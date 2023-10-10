@@ -1,39 +1,30 @@
 import { useEffect, useState } from "react";
-import {eDirection} from "../../settings/constants";
+import { eDirection } from "../../settings/constants";
+import { handleNextPosition } from "../../contexts/canvas/helpers";
 
-function useHeroMovement(initialPosition){
-  const [positionState, updatePositionState] = useState(initialPosition)
-  const [direction, updateDirectionState] = useState(eDirection.RIGHT)
-  
+function useEnemyMovement(initialPosition) {
+  const [positionState, updatePositionState] = useState(initialPosition);
+  const [direction, updateDirectionState] = useState(eDirection.RIGHT);
+
   useEffect(() => {
-    const keydown = (e) => {
-      if(e.key === eDirection.UP){
-        updatePositionState((newPosition)=>({
-          ...newPosition, x: newPosition.x + 1
-        }))   
-      }else if(e.key === eDirection.DOWN){
-        updatePositionState((newPosition)=>({
-          ...newPosition, x: newPosition.x - 1
-        }))  
-      }else if(e.key === eDirection.LEFT){
-        updatePositionState((newPosition)=>({
-          ...newPosition, y: newPosition.y - 1       
-        }));updateDirectionState(eDirection.LEFT) 
-      }else if(e.key === eDirection.RIGHT){
-        updatePositionState((newPosition)=>({
-          ...newPosition, y: newPosition.y + 1          
-        }));updateDirectionState(eDirection.RIGHT)  
-      }
-    }
-   window.addEventListener('keydown', keydown)
-   return () => {
-    window.removeEventListener('keydown', keydown)
-   }
-  })
+    const intervalId = setInterval(() => {
+      const random = Math.floor(Math.random() * 4);
+      const directionArray = Object.values(eDirection);
+      const randomDirection = directionArray[random];
+
+      const nextMovement = handleNextPosition(randomDirection, positionState);
+
+      updatePositionState(nextMovement);
+      updateDirectionState(randomDirection);
+    }, 5000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
   return {
     position: positionState,
-    direction: direction
-  }
+    direction: direction,
+  };
 }
 
-export default useHeroMovement
+export default useEnemyMovement;

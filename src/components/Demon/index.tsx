@@ -8,7 +8,7 @@ const initialPosition = {
   y: 5
 }
 
-export const Demon = () => {
+export const Demon = () => {   
   const movement = useEnemyMovement(initialPosition)
 
   return (

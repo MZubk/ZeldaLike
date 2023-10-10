@@ -23,7 +23,8 @@ export const Hero = () => {
         backgroundRepeat: 'no-repeat',
         animation: "hero-animation 780ms steps(4) infinite",
         transform: `scaleX(${direction === eDirection.RIGHT ? 1 : -1})`,
-        position: "absolute",        
+        position: "absolute",
+        zIndex: 1       
         }}/>
     </>
   )

@@ -11,9 +11,9 @@ export const Board = () => {
     <>
       <Chest/>
       <Trap/>
-      <Hero />
-      <MiniDemon/>
-      <Demon/>
+      <Hero  />      
+      <MiniDemon />
+      <Demon/>      
       <img src="./assets/tileset.gif" alt="Board" width={GAME_SIZE} height={GAME_SIZE} />
     </>
   );

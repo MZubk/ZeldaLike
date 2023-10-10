@@ -10,7 +10,7 @@ const initialPosition = {
 
 export const MiniDemon = () => {
   const movement = useEnemyMovement(initialPosition)
-
+  
   return (
     <>
     <div style={{
@@ -23,8 +23,10 @@ export const MiniDemon = () => {
         backgroundRepeat: 'no-repeat',
         animation: "mini-demon-animation 1.1s steps(4) infinite",
         transform: `scaleX(${movement.direction === eDirection.RIGHT ? 1 : -1})`,
-        position: "absolute",        
+        position: "absolute", 
+            
         }}/>
-    </>
-  )
+        
+    </>    
+  )  
 }
