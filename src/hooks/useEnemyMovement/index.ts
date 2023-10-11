@@ -16,7 +16,7 @@ function useEnemyMovement(initialPosition) {
 
       updatePositionState(nextMovement);
       updateDirectionState(randomDirection);
-    }, 5000);
+    }, 2000);
     return () => {
       clearInterval(intervalId);
     };

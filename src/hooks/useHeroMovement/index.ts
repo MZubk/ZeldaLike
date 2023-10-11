@@ -9,10 +9,18 @@ function useHeroMovement(initialPosition) {
   useEffect(() => {
     const keydown = (e) => {
       const direction = e.key;
-      const nextPosition = handleNextPosition(direction, positionState);
 
-      updatePositionState(nextPosition);
-      updateDirectionState(direction);
+      if (
+        direction === eDirection.UP ||
+        direction === eDirection.DOWN ||
+        direction === eDirection.LEFT ||
+        direction === eDirection.RIGHT
+      ) {
+        const nextPosition = handleNextPosition(direction, positionState);
+
+        updatePositionState(nextPosition);
+        updateDirectionState(direction);
+      }
     };
 
     window.addEventListener("keydown", keydown);

@@ -10,3 +10,10 @@ export enum eDirection {
   UP = "ArrowUp",
   DOWN = "ArrowDown",
 }
+
+export function randomSpawn() {
+  return {
+    x: Math.ceil(Math.random() * 15) + 1,
+    y: Math.ceil(Math.random() * 15) + 1,
+  };
+}

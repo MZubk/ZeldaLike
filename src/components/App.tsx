@@ -1,6 +1,11 @@
-import { Board } from "./Board";
+// settings
 import { GAME_SIZE } from "../settings/constants";
 
+// components
+import { Board } from "./Board";
+import Debugger from "./Debugger";
+
+// style
 import "./index.css";
 
 export default function App() {
@@ -9,6 +14,7 @@ export default function App() {
       <div
         style={{ position: "relative", width: GAME_SIZE, height: GAME_SIZE }}
       >
+        <Debugger />
         <Board />
       </div>
     </div>

@@ -1,31 +1,32 @@
-import {HEAD_OFFSET, TILE_SIZE, eDirection} from "../../settings/constants"
-import useHeroMovement from '../../hooks/useHeroMovement'
+import { HEAD_OFFSET, TILE_SIZE, eDirection } from "../../settings/constants";
+import useHeroMovement from "../../hooks/useHeroMovement";
 
-import "./index.css"
+import "./index.css";
 
-const initialPosition = {
-  x: 2,
-  y: 2
+interface IProps {
+  initialPosition: { x: number; y: number };
 }
 
-export const Hero = () => {
-  const {position, direction} = useHeroMovement(initialPosition)  
+export const Hero = (props: IProps) => {
+  const { position, direction } = useHeroMovement(props.initialPosition);
 
   return (
     <>
-    <div style={{
-        height: TILE_SIZE + HEAD_OFFSET, 
-        width: TILE_SIZE,        
-        bottom: TILE_SIZE * position.x,
-        left: TILE_SIZE * position.y,        
-        backgroundPosition: `0px -${TILE_SIZE - HEAD_OFFSET}px`,
-        backgroundImage:"url(./assets/hero.png)",
-        backgroundRepeat: 'no-repeat',
-        animation: "hero-animation 780ms steps(4) infinite",
-        transform: `scaleX(${direction === eDirection.RIGHT ? 1 : -1})`,
-        position: "absolute",
-        zIndex: 1       
-        }}/>
+      <div
+        style={{
+          height: TILE_SIZE + HEAD_OFFSET,
+          width: TILE_SIZE,
+          top: TILE_SIZE * position.x,
+          left: TILE_SIZE * position.y,
+          backgroundPosition: `0px -${TILE_SIZE - HEAD_OFFSET}px`,
+          backgroundImage: "url(./assets/hero.png)",
+          backgroundRepeat: "no-repeat",
+          animation: "hero-animation 780ms steps(4) infinite",
+          transform: `scaleX(${direction === eDirection.RIGHT ? 1 : -1})`,
+          position: "absolute",
+          zIndex: 1,
+        }}
+      />
     </>
-  )
-}
+  );
+};

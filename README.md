@@ -1,27 +1,28 @@
-# React + TypeScript + Vite
+# ZeldaLike (nome provisorio) - Jogo estilo Zelda Link of to Pass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![GitHub repo size](https://img.shields.io/github/repo-size/MZubk/ZeldaLike?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/MZubk/ZeldaLike?style=for-the-badge)
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 
-Currently, two official plugins are available:
+## Status.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Em desenvolvimento
 
-## Expanding the ESLint configuration
+<img>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🤝 Colaboradores
 
-- Configure the top-level `parserOptions` property like this:
+Colaboradores desse projeto:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://github.com/mzubk.png" width="100px;" alt="Foto do Murillo Zubk no GitHub"/><br>
+        <sub>
+          <b>Murillo Zubk</b>
+        </sub>
+      </a>
+    </td>    
+  </tr>
+</table>
