@@ -16,8 +16,8 @@ export const MiniDemon = (props: IProps) => {
         style={{
           height: TILE_SIZE + HEAD_OFFSET,
           width: TILE_SIZE,
-          top: TILE_SIZE * movement.position.x,
-          left: TILE_SIZE * movement.position.y,
+          top: TILE_SIZE * movement.position.y - HEAD_OFFSET,
+          left: TILE_SIZE * movement.position.x,
           backgroundPosition: `0px -${TILE_SIZE - HEAD_OFFSET}px`,
           backgroundImage: "url(./assets/mini-demon.png)",
           backgroundRepeat: "no-repeat",

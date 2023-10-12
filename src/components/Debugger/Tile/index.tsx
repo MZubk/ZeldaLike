@@ -1,3 +1,4 @@
+import { eCanvas } from "../../../contexts/canvas/helpers";
 import { TILE_SIZE } from "../../../settings/constants";
 
 interface IProps {
@@ -8,10 +9,21 @@ interface IProps {
 function Tile(props: IProps) {
   function getTileColor() {
     switch (props.text) {
-      case 0:
+      case eCanvas.FLOOR:
+        return "darkgrey";
+      case eCanvas.WALL:
         return "yellow";
-      case 1:
+      case eCanvas.DOOR:
+        return "white";
+      case eCanvas.TRAP:
+        return "chartreuse";
+      case eCanvas.MINI_DEMON:
+      case eCanvas.DEMON:
         return "red";
+      case eCanvas.CHEST:
+        return "cyan";
+      case eCanvas.HERO:
+        return "magenta";
     }
   }
 
@@ -27,6 +39,8 @@ function Tile(props: IProps) {
         position: "absolute",
         border: `2px solid ${color}`,
         color: color,
+        fontSize: 32,
+        zIndex: 2,
       }}
     >
       {props.text}

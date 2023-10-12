@@ -16,8 +16,8 @@ export const Hero = (props: IProps) => {
         style={{
           height: TILE_SIZE + HEAD_OFFSET,
           width: TILE_SIZE,
-          top: TILE_SIZE * position.x,
-          left: TILE_SIZE * position.y,
+          top: TILE_SIZE * position.y - HEAD_OFFSET,
+          left: TILE_SIZE * position.x,
           backgroundPosition: `0px -${TILE_SIZE - HEAD_OFFSET}px`,
           backgroundImage: "url(./assets/hero.png)",
           backgroundRepeat: "no-repeat",

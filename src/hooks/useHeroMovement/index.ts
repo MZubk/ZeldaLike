@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { eDirection } from "../../settings/constants";
-import { handleNextPosition } from "../../contexts/canvas/helpers";
+import { checkValidMovement, handleNextPosition } from "../../contexts/canvas/helpers";
 
 function useHeroMovement(initialPosition) {
   const [positionState, updatePositionState] = useState(initialPosition);
@@ -16,10 +16,15 @@ function useHeroMovement(initialPosition) {
         direction === eDirection.LEFT ||
         direction === eDirection.RIGHT
       ) {
-        const nextPosition = handleNextPosition(direction, positionState);
 
-        updatePositionState(nextPosition);
-        updateDirectionState(direction);
+        const nextPosition = handleNextPosition(direction, positionState);
+        const isValidMovement = checkValidMovement(nextPosition)
+
+        if (isValidMovement) {
+          updatePositionState(nextPosition)
+        }
+        updateDirectionState(direction)
+        console.log(isValidMovement);
       }
     };
 

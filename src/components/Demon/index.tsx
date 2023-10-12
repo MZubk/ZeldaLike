@@ -20,8 +20,8 @@ export const Demon = (props: IProps) => {
         style={{
           height: DEMON_TILE_SIZE,
           width: DEMON_TILE_SIZE,
-          top: TILE_SIZE * movement.position.x,
-          left: TILE_SIZE * movement.position.y,
+          top: TILE_SIZE * movement.position.y,
+          left: TILE_SIZE * movement.position.x,
           backgroundImage: "url(./assets/demon.png)",
           backgroundRepeat: "no-repeat",
           animation: "demon-animation 670ms steps(4) infinite",
