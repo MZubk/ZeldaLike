@@ -1,15 +1,16 @@
 // components
 import Tile from "./Tile";
-import { canvas } from "../../contexts/canvas/helpers";
+import { useContext } from "react";
+import { CanvasContext } from "../../contexts/canvas";
 
-function getCanvasMap() {
+function getCanvasMap(canvas) {
   const tileArray = [];
 
   for (let y = 0; y < canvas.length; y++) {
     const canvasY = canvas[y];
 
     for (let x = 0; x < canvasY.length; x++) {
-      const canvasYX = canvas[y][x];
+      const canvasYX = canvasY[x];
 
       const position = { x: x, y: y };
       const text = canvas[y][x] || canvasYX;
@@ -23,7 +24,8 @@ function getCanvasMap() {
 }
 
 function Debugger() {
-  const tiles = getCanvasMap();
+  const canvasContext = useContext(CanvasContext);
+  const tiles = getCanvasMap(canvasContext.canvas);
 
   return (
     <>

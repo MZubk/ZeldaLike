@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { eDirection } from "../../settings/constants";
-import { checkValidMovement, handleNextPosition } from "../../contexts/canvas/helpers";
+import { useContext, useEffect, useState } from "react";
+import { eDirection, eWalker } from "../../settings/constants";
+import { CanvasContext } from "../../contexts/canvas";
 
 function useEnemyMovement(initialPosition) {
+  const canvasContext = useContext(CanvasContext)
   const [positionState, updatePositionState] = useState(initialPosition);
   const [direction, updateDirectionState] = useState(eDirection.RIGHT);
 
@@ -12,14 +13,13 @@ function useEnemyMovement(initialPosition) {
       const directionArray = Object.values(eDirection);
       const randomDirection = directionArray[random];
 
-      const nextPosition = handleNextPosition(randomDirection, positionState);
-      const isValidMovement = checkValidMovement(nextPosition)
+      const movement = canvasContext.updateCanvas(randomDirection, positionState, eWalker.ENEMY)
 
-      if (isValidMovement) {
-        updatePositionState(nextPosition)
+      if (movement.nextMove.valid) {
+        updatePositionState(movement.nextPosition)
         updateDirectionState(direction)
       }
-      console.log(isValidMovement);
+
     }, 2000);
     return () => {
       clearInterval(intervalId);

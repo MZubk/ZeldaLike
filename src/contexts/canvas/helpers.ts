@@ -1,6 +1,6 @@
 
 // settings
-import { eDirection } from "../../settings/constants";
+import { eDirection, eWalker } from "../../settings/constants";
 
 
 export function handleNextPosition(direction, position) {
@@ -39,40 +39,60 @@ const HE = eCanvas.HERO
 export const canvas = [
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
-  [WL, FL, FL, WL, FL, FL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, WL, FL, FL, WL],
+  [WL, FL, FL, WL, FL, FL, FL, FL, WL, FL, FL, FL, CH, FL, FL, FL, WL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, CH, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, CH, TR, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, HE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
 ];
 
-export function checkValidMovement(nextPosition) {
+export function checkValidMovement(nextPosition, walker) {
   const canvasValue = canvas[nextPosition.y][nextPosition.x]
 
-  if (canvasValue === eCanvas.WALL) {
-    return false
-  }
+  const result = walker === eWalker.HERO
+    ? getHeroValidMoves(canvasValue)
+    : getEnemyValidMoves(canvasValue);
 
-  if (canvasValue === eCanvas.CHEST) {
-    console.log("bau");
-  }
+  return result
+}
 
-  if (canvasValue === eCanvas.TRAP) {
-    console.log("caiu na trap");
-
+function getHeroValidMoves(canvasValue) {
+  return {
+    valid:
+      canvasValue === eCanvas.FLOOR ||
+      canvasValue === eCanvas.TRAP ||
+      canvasValue === eCanvas.DOOR ||
+      canvasValue === eCanvas.MINI_DEMON ||
+      canvasValue === eCanvas.DEMON,
+    dead:
+      canvasValue === eCanvas.TRAP ||
+      canvasValue === eCanvas.MINI_DEMON ||
+      canvasValue === eCanvas.DEMON,
+    chest:
+      canvasValue === eCanvas.CHEST,
+    door:
+      canvasValue === eCanvas.DOOR,
   }
-  return true
+}
+
+function getEnemyValidMoves(canvasValue) {
+  return {
+    valid: canvasValue === eCanvas.FLOOR || canvasValue === eCanvas.HERO,
+    dead: false,
+    chest: false,
+    door: false
+  }
 }

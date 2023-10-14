@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { eDirection } from "../../settings/constants";
-import { checkValidMovement, handleNextPosition } from "../../contexts/canvas/helpers";
+import { CanvasContext } from './../../contexts/canvas/index';
+import { useContext, useEffect, useState } from "react";
+import { eDirection, eWalker } from "../../settings/constants";
+
 
 function useHeroMovement(initialPosition) {
+  const canvasContext = useContext(CanvasContext)
   const [positionState, updatePositionState] = useState(initialPosition);
   const [direction, updateDirectionState] = useState(eDirection.RIGHT);
 
@@ -17,14 +19,16 @@ function useHeroMovement(initialPosition) {
         direction === eDirection.RIGHT
       ) {
 
-        const nextPosition = handleNextPosition(direction, positionState);
-        const isValidMovement = checkValidMovement(nextPosition)
+        const movement = canvasContext.updateCanvas(direction, positionState, eWalker.HERO)
 
-        if (isValidMovement) {
-          updatePositionState(nextPosition)
+        if (movement.nextMove.valid) {
+          updatePositionState(movement.nextPosition)
         }
         updateDirectionState(direction)
-        console.log(isValidMovement);
+
+        if (movement.nextMove.dead) {
+          console.log(`ah lá o otário morreu hehe ${movement.nextMove.dead}`)
+        }
       }
     };
 

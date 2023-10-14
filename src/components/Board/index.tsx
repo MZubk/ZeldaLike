@@ -1,4 +1,4 @@
-import { GAME_SIZE, randomSpawn } from "../../settings/constants";
+import { GAME_SIZE } from "../../settings/constants";
 
 import { Hero } from "../Hero";
 import { MiniDemon } from "../MiniDemon";
@@ -48,11 +48,6 @@ const boardArray = getCanvasMap();
 export const Board = () => {
   return (
     <>
-      {/* <Chest />
-      <Trap />
-      <MiniDemon initialPosition={randomSpawn()} />
-      <Demon initialPosition={randomSpawn()} /> */}
-
       {boardArray}
       <img
         src="./assets/tileset.gif"

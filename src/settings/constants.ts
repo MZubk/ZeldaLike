@@ -11,9 +11,14 @@ export enum eDirection {
   DOWN = "ArrowDown",
 }
 
-export function randomSpawn() {
-  return {
-    x: Math.ceil(Math.random() * 15) + 1,
-    y: Math.ceil(Math.random() * 15) + 1,
-  };
+// export function randomSpawn() {
+//   return {
+//     x: Math.ceil(Math.random() * 15) + 1,
+//     y: Math.ceil(Math.random() * 15) + 1,
+//   };
+// }
+
+export enum eWalker {
+  HERO = "hero",
+  ENEMY = "enemy"
 }

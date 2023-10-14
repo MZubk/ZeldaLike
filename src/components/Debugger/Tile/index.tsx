@@ -37,7 +37,7 @@ function Tile(props: IProps) {
         top: TILE_SIZE * props.position.y,
         left: TILE_SIZE * props.position.x,
         position: "absolute",
-        border: `2px solid ${color}`,
+        border: `1px solid ${color}`,
         color: color,
         fontSize: 32,
         zIndex: 2,
